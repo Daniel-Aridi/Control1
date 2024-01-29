@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Control1.Views.ControlPage"
+             xmlns:local="clr-namespace:Control1.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:ControlPageViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        
+        <ScrollView Orientation="Vertical">
+
+                <StackLayout x:Name="mainStackLayout" BindableLayout.ItemsSource="{Binding Bars}" BackgroundColor="White">
+                    
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            
+                            <Frame x:Name="controlFrame" CornerRadius="7" Padding="2,15,2,15" Margin="7,4,7,0" HeightRequest="37">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding IsButtonOn}" Value="True">
+                                        <Setter Property="BackgroundColor" Value="#A9CCE3"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding IsButtonOn}" Value="False">
+                                        <Setter Property="BackgroundColor" Value="white"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+
+                                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                    
+                                    <Label Text="{Binding DeviceName}" 
+                                           TextColor="Black" 
+                                           VerticalOptions="CenterAndExpand" 
+                                           WidthRequest="140"
+                                           Margin="10,0,0,0"
+                                           FontAttributes="Bold"
+                                           FontSize="15"/>
+
+                                    <ImageButton Source="sandClock.png" 
+                                                 Margin="0,1,7,0" 
+                                                 Scale="0.6" 
+                                                 CornerRadius="10" 
+                                                 BackgroundColor="{Binding Path=BackgroundColor, Source={x:Reference controlFrame}}"/>
+
+                                    <Button Text="OFF" 
+                                            BackgroundColor="#21618C" 
+                                            WidthRequest="65" 
+                                            TextColor="White"
+                                            FontSize="13"   
+                                            FontAttributes="Bold"
+                                            CornerRadius="7" 
+                                            Margin="0,0,5,0"
+                                            Command="{Binding Path=BindingContext.TurnOFFCommand, Source={x:Reference mainStackLayout}}"
+                                            CommandParameter="{Binding .}"/>
+                                    
+                                    <Button Text="ON"  
+                                            Margin="0,0,5,0" 
+                                            TextColor="White"
+                                            BackgroundColor="#21618C" 
+                                            WidthRequest="65" 
+                                            HorizontalOptions="End"  
+                                            FontSize="13" 
+                                            FontAttributes="Bold"
+                                            CornerRadius="7"
+                                            Command="{Binding Path=BindingContext.TurnONCommand, Source={x:Reference mainStackLayout}}"
+                                            CommandParameter="{Binding .}"/>
+                                    
+                                </FlexLayout>
+                                
+                            </Frame>
+                            
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                    
+                </StackLayout>
+
+        </ScrollView>
+            
+    </ContentPage.Content>
+</ContentPage>
+    
+    
+<!--icon contribution:
+<a href="https://www.flaticon.com/free-icons/timer" title="timer icons">Timer icons created by Sahab Uddin - Flaticon</a>-->
+   

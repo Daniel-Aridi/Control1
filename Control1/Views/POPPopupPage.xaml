@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Control1.Views.POPPopupPage"
+             xmlns:local="clr-namespace:Control1.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:POPPopupViewModel/>
+    </ContentPage.BindingContext>
+
+    <Frame BorderColor="Gray" CornerRadius="10" Padding="0" Margin="20,20,20,495" BackgroundColor="white" >
+        <Grid>
+            <StackLayout x:Name="BleDevicesList" Padding="20" Margin="0">
+
+                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                    <Entry x:Name="passwordEntry" Placeholder=" proof of possession" WidthRequest="250" Margin="5,0,0,0" BackgroundColor="white" />
+                    <ImageButton Source="eye.png" Clicked="ToglePasswordVisibility" WidthRequest="55" HeightRequest="35" BackgroundColor="White" Margin="10,3,0,5" CornerRadius="10"/>
+                </FlexLayout>
+
+                <FlexLayout JustifyContent="SpaceAround" AlignItems="Center">
+
+                    <Button Text="CANCEL" 
+                        TextColor="White" 
+                        CornerRadius="10" 
+                        WidthRequest="175" 
+                        HeightRequest="40" 
+                        BackgroundColor="#1F618D" 
+                        Margin="0,15,10,0"
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding CancelClickedCommand}"/>
+
+                    <Button Text="Submit" 
+                        TextColor="White" 
+                        CornerRadius="10" 
+                        WidthRequest="175" 
+                        HeightRequest="40" 
+                        BackgroundColor="#1F618D" 
+                        Margin="10,15,0,0"
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding SubmitClickedCommand}"
+                        CommandParameter="{Binding Source={x:Reference passwordEntry}, Path=Text}"/>
+
+                </FlexLayout>
+
+            </StackLayout>
+
+            <ActivityIndicator x:Name="IsBusyIndicator" Scale="0.15" Color="#1F618D" IsRunning="{Binding IsBusy}"/>
+
+        </Grid>
+        
+    </Frame>
+</ContentPage>
+
+<!--image contribution
+<a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Bankume - Flaticon</a>-->

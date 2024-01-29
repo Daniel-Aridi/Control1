@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="Control1.Tab"
+       xmlns:local="clr-namespace:Control1.Views">
+
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource TAB}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource TAB}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="white"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    
+    
+
+
+    <TabBar x:Name="MainTabBar">
+
+        <Tab x:Name="Tab1" Title="Search Devices" Icon="devicesIcon.png" Route="Devices">
+            <ShellContent ContentTemplate="{DataTemplate local:Devices}"/>
+        </Tab>
+
+        <Tab x:Name="Tab2" Title="Switch" Icon="controlIcon.png" Route="ControlPage">
+            <ShellContent ContentTemplate="{DataTemplate local:ControlPage}"/>
+        </Tab>
+
+    </TabBar>
+
+
+
+    
+
+
+</Shell>
+
+    
+    
+    
+    
+    
+    
+<!--Icons contribution:-->
+<!--<a href="https://www.flaticon.com/free-icons/smart-lighting" title="smart lighting icons">Smart lighting icons created by Vectoricons - Flaticon</a>-->
+<!--<a href="https://www.flaticon.com/free-icons/connect" title="connect icons">Connect icons created by Freepik - Flaticon</a>-->

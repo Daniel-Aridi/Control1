@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Control1.Views.WifiNetworksPage"
+             xmlns:local="clr-namespace:Control1.ViewModels">
+
+
+    <ContentPage.BindingContext>
+        <local:WifiNetworksViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ScrollView Orientation="Vertical" IsEnabled="{Binding IsScanButtonEnabled}">
+
+                <StackLayout x:Name="bluetoothDevicesListView" Grid.Row="0">
+
+                    <ListView ItemsSource="{Binding WifiNetworks}" SeparatorColor="black" Margin="15,15,15,0" ItemTapped="WifiNetworkTabbed" IsEnabled="{Binding IsScanButtonEnabled}">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding SSID}"  
+                                           TextColor="Black"
+                                           HorizontalOptions="Start" 
+                                           Margin="15,10,10,10" 
+                                           FontSize="Subtitle" />  
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+
+            </ScrollView>
+
+            <StackLayout Grid.Row="1" Margin="20" VerticalOptions="End">
+
+                <Button x:Name="ScanButton"
+                Text="Scan For Available Networks"
+                BackgroundColor="#1F618D"
+                Padding="38,16,38,16" 
+                CornerRadius="20"
+                HorizontalOptions="Center"
+                Command="{Binding ScanWifiNetworkCommand}" 
+                IsEnabled="{Binding IsScanButtonEnabled}"/>
+
+            </StackLayout>
+
+
+            <ActivityIndicator x:Name="IsBusyIndicator" Scale="0.15" Color="#1F618D" IsRunning="{Binding IsBusy}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
